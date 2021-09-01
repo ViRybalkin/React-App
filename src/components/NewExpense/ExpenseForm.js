@@ -1,36 +1,37 @@
-import "./ExpenseForm.css";
-import React, { useState } from "react";
+import './ExpenseForm.css';
+import React, { useState } from 'react';
 
-export const ExpenseForm = (props) => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
+export const ExpenseForm = props => {
+  console.log(props);
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredDate, setEnteredDate] = useState('');
 
-  const handlerTitleChange = (e) => {
+  const handlerTitleChange = e => {
     setEnteredTitle(e.target.value);
   };
 
-  const handlerAmountChange = (e) => {
+  const handlerAmountChange = e => {
     setEnteredAmount(e.target.value);
   };
 
-  const handlerDateChange = (e) => {
+  const handlerDateChange = e => {
     setEnteredDate(e.target.value);
   };
 
-  const handerSubmit = (e) => {
+  const handerSubmit = e => {
     e.preventDefault();
 
     const expenseDate = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
 
     props.onExpenseSaveData(expenseDate);
-    setEnteredDate("");
-    setEnteredTitle("");
-    setEnteredAmount("");
+    setEnteredDate('');
+    setEnteredTitle('');
+    setEnteredAmount('');
   };
 
   return (
@@ -65,6 +66,9 @@ export const ExpenseForm = (props) => {
           />
         </div>
         <div className="new-expense__actions">
+          <button type="button" onClick={props.onStopEditingHandler}>
+            Cancel
+          </button>
           <button type="submit">Add to Expense</button>
         </div>
       </div>
