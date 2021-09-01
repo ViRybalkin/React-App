@@ -2,7 +2,6 @@ import { ExpenseForm } from "./ExpenseForm";
 import "./NewExpense.css";
 
 export const NewExpense = (prop) => {
-  console.log(prop);
   const ExpenseSaveDateHandler = (expData) => {
     const expenseData = {
       ...expData,
